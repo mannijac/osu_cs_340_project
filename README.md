@@ -1,2 +1,3 @@
-# osu_cs_340_project
-Group database project for CS 340 
+# Cartridge Collector
+_A tool for cartridge video game collectors to catalogue their collection, discover new games, and leave ratings and reviews. 
+
