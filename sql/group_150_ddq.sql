@@ -40,14 +40,13 @@ DROP TABLE IF EXISTS games;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE games (
-  game_id int NOT NULL UNIQUE AUTO_INCREMENT,
+  game_id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
   title varchar(30) NOT NULL,
   platform varchar(30) NOT NULL,
   genre varchar(30), 
   developer varchar(30),
   publisher varchar(30) NOT NULL,
-  release_date date NOT NULL,
-  PRIMARY KEY (game_id),
+  release_date date NOT NULL
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
 --
@@ -66,10 +65,10 @@ DROP TABLE IF EXISTS wishes;
 CREATE TABLE wishes (
   user_id int NOT NULL,
   game_id int NOT NULL,
-  PRIMARY KEY (wishes_fk),
+  PRIMARY KEY (user_id, game_id),
   CONSTRAINT wishes_fk FOREIGN KEY (user_id) REFERENCES users
 (user_id) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=159 DEFAULT CHARSET=latin1;
+);
 /*!40101 SET character_set_client = @saved_cs_client */;
 --
 -- Dumping data for table wishes
@@ -89,10 +88,10 @@ CREATE TABLE ratings (
   game_id int NOT NULL,
   rating_value int NOT NULL, 
   rating_comment varchar(30),
-  PRIMARY KEY (ratings_fk),
+  PRIMARY KEY (user_id, game_id),
   CONSTRAINT ratings_fk FOREIGN KEY (user_id) REFERENCES users
 (user_id) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
+);
 /*!40101 SET character_set_client = @saved_cs_client */;
 --
 -- Dumping data for table ratings
@@ -115,7 +114,7 @@ CREATE TABLE collections (
   CONSTRAINT collections_fk FOREIGN KEY (game_id) REFERENCES games
 (game_id) ON DELETE SET NULL ON UPDATE CASCADE
   PRIMARY KEY (id)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+);
 /*!40101 SET character_set_client = @saved_cs_client */;
 --
 -- Dumping data for table collections
