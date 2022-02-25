@@ -99,13 +99,15 @@ CREATE TABLE ratings (
   PRIMARY KEY (user_id, game_id),
   CONSTRAINT fk_ratings_user
     FOREIGN KEY (user_id) REFERENCES users(user_id)
-    ON DELETE SET NULL
-    ON UPDATE CASCADE,
-  CONSTRAINT fk_ratings_game
-    FOREIGN KEY (game_id) REFERENCES games(game_id)
-    ON DELETE SET NULL
-    ON UPDATE CASCADE
+    ON DELETE CASCADE
+    ON UPDATE CASCADE 
 );
+
+ALTER TABLE ratings 
+  ADD CONSTRAINT fk_ratings_game
+    FOREIGN KEY (game_id) REFERENCES games(game_id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
 /*!40101 SET character_set_client = @saved_cs_client */;
 --
 -- Dumping data for table ratings
@@ -126,13 +128,15 @@ CREATE TABLE collections (
   PRIMARY KEY (user_id, game_id),
   CONSTRAINT fk_collections_user
     FOREIGN KEY (user_id) REFERENCES users(user_id)
-    ON DELETE SET NULL
-    ON UPDATE CASCADE,
-  CONSTRAINT fk_collections_game
-    FOREIGN KEY (game_id) REFERENCES games(game_id)
-    ON DELETE SET NULL
+    ON DELETE CASCADE
     ON UPDATE CASCADE
 );
+
+ALTER TABLE collections
+  ADD CONSTRAINT fk_collections_game
+    FOREIGN KEY (game_id) REFERENCES games(game_id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
 /*!40101 SET character_set_client = @saved_cs_client */;
 --
 -- Dumping data for table collections
