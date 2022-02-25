@@ -66,8 +66,14 @@ CREATE TABLE wishes (
   user_id int NOT NULL,
   game_id int NOT NULL,
   PRIMARY KEY (user_id, game_id),
-  FOREIGN KEY (user_id) REFERENCES users(user_id),
-  FOREIGN KEY (game_id) REFERENCES games(game_id)
+  CONSTRAINT fk_wishes_user
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
+    ON DELETE SET NULL
+    ON UPDATE CASCADE,
+  CONSTRAINT fk_wishes_game
+    FOREIGN KEY (game_id) REFERENCES games(game_id)
+    ON DELETE SET NULL
+    ON UPDATE CASCADE
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
 --
@@ -89,8 +95,14 @@ CREATE TABLE ratings (
   rating_value int NOT NULL, 
   rating_comment varchar(30),
   PRIMARY KEY (user_id, game_id),
-  FOREIGN KEY (user_id) REFERENCES users(user_id),
-  FOREIGN KEY (game_id) REFERENCES games(game_id)
+  CONSTRAINT fk_ratings_user
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
+    ON DELETE SET NULL
+    ON UPDATE CASCADE,
+  CONSTRAINT fk_ratings_game
+    FOREIGN KEY (game_id) REFERENCES games(game_id)
+    ON DELETE SET NULL
+    ON UPDATE CASCADE
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
 --
@@ -110,8 +122,14 @@ CREATE TABLE collections (
   user_id int NOT NULL,
   game_id int NOT NULL,
   PRIMARY KEY (user_id, game_id),
-  FOREIGN KEY (user_id) REFERENCES users(user_id),
-  FOREIGN KEY (game_id) REFERENCES games(game_id)
+  CONSTRAINT fk_collections_user
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
+    ON DELETE SET NULL
+    ON UPDATE CASCADE,
+  CONSTRAINT fk_collections_game
+    FOREIGN KEY (game_id) REFERENCES games(game_id)
+    ON DELETE SET NULL
+    ON UPDATE CASCADE
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
 --

@@ -3,7 +3,7 @@
 SELECT * from users;
 
 --Add user
-INSERT INTO users (user_id, email, screen_name, country) VALUES (:user_idInput, :emailInput, :screen_nameInput, :countryInput);
+INSERT INTO users (user_id, email, screen_name, country_code) VALUES (:user_idInput, :emailInput, :screen_nameInput, :countryInput);
 
 --View user’s collections of game titles
 SELECT user_id from collections;
