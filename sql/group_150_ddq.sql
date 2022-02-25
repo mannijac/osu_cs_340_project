@@ -24,7 +24,7 @@ CREATE TABLE users (
   email varchar(30) UNIQUE NOT NULL,
   screen_name varchar(30) NOT NULL,
   country varchar
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+);
 /*!40101 SET character_set_client = @saved_cs_client */;
 --
 -- Dumping data for table users'
@@ -48,7 +48,7 @@ CREATE TABLE games (
   publisher varchar(30) NOT NULL,
   release_date date NOT NULL,
   PRIMARY KEY (game_id),
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+);
 /*!40101 SET character_set_client = @saved_cs_client */;
 --
 -- Dumping data for table games
