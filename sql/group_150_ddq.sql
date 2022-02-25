@@ -22,7 +22,7 @@ DROP TABLE IF EXISTS users;
 CREATE TABLE users (
   user_id int NOT NULL UNIQUE AUTO_INCREMENT,
   email varchar(30) UNIQUE NOT NULL,
-  screen_name varchar NOT NULL,
+  screen_name varchar(30) NOT NULL,
   country varchar,
   PRIMARY KEY (user_id)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
@@ -42,11 +42,11 @@ DROP TABLE IF EXISTS games;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE games (
   game_id int NOT NULL UNIQUE AUTO_INCREMENT,
-  title varchar NOT NULL,
-  platform varchar NOT NULL,
+  title varchar(30) NOT NULL,
+  platform varchar(30) NOT NULL,
   genre varchar, 
   developer varchar,
-  publisher varchar NOT NULL,
+  publisher varchar(30) NOT NULL,
   release_date date NOT NULL,
   PRIMARY KEY (game_id),
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
