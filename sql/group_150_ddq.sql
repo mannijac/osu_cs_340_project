@@ -68,13 +68,15 @@ CREATE TABLE wishes (
   PRIMARY KEY (user_id, game_id),
   CONSTRAINT fk_wishes_user
     FOREIGN KEY (user_id) REFERENCES users(user_id)
-    ON DELETE SET NULL
+    ON DELETE CASCADE
     ON UPDATE CASCADE,
-  CONSTRAINT fk_wishes_game
-    FOREIGN KEY (game_id) REFERENCES games(game_id)
-    ON DELETE SET NULL
-    ON UPDATE CASCADE
 );
+
+ALTER TABLE wishes 
+  ADD CONSTRAINT fk_wishes_game
+  FOREIGN KEY (game_id) REFERENCES games(game_id)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE;
 /*!40101 SET character_set_client = @saved_cs_client */;
 --
 -- Dumping data for table wishes
