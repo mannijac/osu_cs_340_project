@@ -69,7 +69,7 @@ CREATE TABLE wishes (
   CONSTRAINT fk_wishes_user
     FOREIGN KEY (user_id) REFERENCES users(user_id)
     ON DELETE CASCADE
-    ON UPDATE CASCADE,
+    ON UPDATE CASCADE
 );
 
 ALTER TABLE wishes 
