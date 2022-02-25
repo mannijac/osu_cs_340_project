@@ -14,116 +14,116 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 --
--- Table structure for table `users'
+-- Table structure for table users'
 --
-DROP TABLE IF EXISTS `users`;
+DROP TABLE IF EXISTS users;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `users` (
-  `user_id` int NOT NULL UNIQUE AUTO_INCREMENT,
-  `email` varchar UNIQUE NOT NULL,
-  `screen_name` varchar NOT NULL,
-  `country` varchar,
-  PRIMARY KEY (`user_id`)
+CREATE TABLE users (
+  user_id int NOT NULL UNIQUE AUTO_INCREMENT,
+  email varchar UNIQUE NOT NULL,
+  screen_name varchar NOT NULL,
+  country varchar,
+  PRIMARY KEY (user_id)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 --
--- Dumping data for table `users'
+-- Dumping data for table users'
 --
-LOCK TABLES `users` WRITE;
-/*!40000 ALTER TABLE `users` DISABLE KEYS */;
-/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+LOCK TABLES users WRITE;
+/*!40000 ALTER TABLE users DISABLE KEYS */;
+/*!40000 ALTER TABLE users ENABLE KEYS */;
 UNLOCK TABLES;
 --
--- Table structure for table `games`
+-- Table structure for table games
 --
-DROP TABLE IF EXISTS `games`;
+DROP TABLE IF EXISTS games;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `games` (
-  `game_id` int NOT NULL UNIQUE AUTO_INCREMENT,
-  `title` varchar NOT NULL,
-  `platform` varchar NOT NULL,
-  `genre` varchar, 
-  `developer` varchar,
-  `publisher` varchar NOT NULL,
-  `release_date` date NOT NULL,
-  PRIMARY KEY (`game_id`),
+CREATE TABLE games (
+  game_id int NOT NULL UNIQUE AUTO_INCREMENT,
+  title varchar NOT NULL,
+  platform varchar NOT NULL,
+  genre varchar, 
+  developer varchar,
+  publisher varchar NOT NULL,
+  release_date date NOT NULL,
+  PRIMARY KEY (game_id),
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 --
--- Dumping data for table `games`
+-- Dumping data for table games
 --
-LOCK TABLES `games` WRITE;
-/*!40000 ALTER TABLE `games` DISABLE KEYS */;
-/*!40000 ALTER TABLE `games` ENABLE KEYS */;
+LOCK TABLES games WRITE;
+/*!40000 ALTER TABLE games DISABLE KEYS */;
+/*!40000 ALTER TABLE games ENABLE KEYS */;
 UNLOCK TABLES;
 --
--- Table structure for table `wishes`
+-- Table structure for table wishes
 --
-DROP TABLE IF EXISTS `wishes`;
+DROP TABLE IF EXISTS wishes;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `wishes` (
-  `user_id` int NOT NULL,
-  `game_id` int NOT NULL,
-  PRIMARY KEY (`wishes_fk`),
-  CONSTRAINT `wishes_fk` FOREIGN KEY (`user_id`) REFERENCES `users`
-(`user_id`) ON DELETE SET NULL ON UPDATE CASCADE
+CREATE TABLE wishes (
+  user_id int NOT NULL,
+  game_id int NOT NULL,
+  PRIMARY KEY (wishes_fk),
+  CONSTRAINT wishes_fk FOREIGN KEY (user_id) REFERENCES users
+(user_id) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=159 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 --
--- Dumping data for table `wishes`
+-- Dumping data for table wishes
 --
-LOCK TABLES `wishes` WRITE;
-/*!40000 ALTER TABLE `wishes` DISABLE KEYS */;
-/*!40000 ALTER TABLE `wishes` ENABLE KEYS */;
+LOCK TABLES wishes WRITE;
+/*!40000 ALTER TABLE wishes DISABLE KEYS */;
+/*!40000 ALTER TABLE wishes ENABLE KEYS */;
 UNLOCK TABLES;
 --
--- Table structure for table `ratings`
+-- Table structure for table ratings
 --
-DROP TABLE IF EXISTS `ratings`;
+DROP TABLE IF EXISTS ratings;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ratings` (
-  `user_id` int NOT NULL,
-  `game_id` int NOT NULL,
-  `rating_value` int NOT NULL, 
-  `rating_comment` VARCHAR,
-  PRIMARY KEY (`ratings_fk`),
-  CONSTRAINT `ratings_fk` FOREIGN KEY (`user_id`) REFERENCES `users`
-(`user_id`) ON DELETE SET NULL ON UPDATE CASCADE
+CREATE TABLE ratings (
+  user_id int NOT NULL,
+  game_id int NOT NULL,
+  rating_value int NOT NULL, 
+  rating_comment VARCHAR,
+  PRIMARY KEY (ratings_fk),
+  CONSTRAINT ratings_fk FOREIGN KEY (user_id) REFERENCES users
+(user_id) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 --
--- Dumping data for table `ratings`
+-- Dumping data for table ratings
 --
-LOCK TABLES `ratings` WRITE;
-/*!40000 ALTER TABLE `ratings` DISABLE KEYS */;
-/*!40000 ALTER TABLE `ratings` ENABLE KEYS */;
+LOCK TABLES ratings WRITE;
+/*!40000 ALTER TABLE ratings DISABLE KEYS */;
+/*!40000 ALTER TABLE ratings ENABLE KEYS */;
 UNLOCK TABLES;
 --
--- Table structure for table `collections`
+-- Table structure for table collections
 --
-DROP TABLE IF EXISTS `collections`;
+DROP TABLE IF EXISTS collections;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `collections` (
-  `user_id` int NOT NULL,
-  `game_id` int NOT NULL,
-  CONSTRAINT `collections_fk` FOREIGN KEY (`user_id`) REFERENCES `users`
-(`user_id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `collections_fk` FOREIGN KEY (`game_id`) REFERENCES `games`
-(`game_id`) ON DELETE SET NULL ON UPDATE CASCADE
-  PRIMARY KEY (`id`)
+CREATE TABLE collections (
+  user_id int NOT NULL,
+  game_id int NOT NULL,
+  CONSTRAINT collections_fk FOREIGN KEY (user_id) REFERENCES users
+(user_id) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT collections_fk FOREIGN KEY (game_id) REFERENCES games
+(game_id) ON DELETE SET NULL ON UPDATE CASCADE
+  PRIMARY KEY (id)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 --
--- Dumping data for table `collections`
+-- Dumping data for table collections
 --
-LOCK TABLES `collections` WRITE;
-/*!40000 ALTER TABLE `collections` DISABLE KEYS */;
-/*!40000 ALTER TABLE `collections` ENABLE KEYS */;
+LOCK TABLES collections WRITE;
+/*!40000 ALTER TABLE collections DISABLE KEYS */;
+/*!40000 ALTER TABLE collections ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
