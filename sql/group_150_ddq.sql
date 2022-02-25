@@ -43,8 +43,8 @@ CREATE TABLE games (
   game_id int NOT NULL UNIQUE AUTO_INCREMENT,
   title varchar(30) NOT NULL,
   platform varchar(30) NOT NULL,
-  genre varchar, 
-  developer varchar,
+  genre varchar(30), 
+  developer varchar(30),
   publisher varchar(30) NOT NULL,
   release_date date NOT NULL,
   PRIMARY KEY (game_id),
@@ -88,7 +88,7 @@ CREATE TABLE ratings (
   user_id int NOT NULL,
   game_id int NOT NULL,
   rating_value int NOT NULL, 
-  rating_comment VARCHAR,
+  rating_comment varchar(30),
   PRIMARY KEY (ratings_fk),
   CONSTRAINT ratings_fk FOREIGN KEY (user_id) REFERENCES users
 (user_id) ON DELETE SET NULL ON UPDATE CASCADE
