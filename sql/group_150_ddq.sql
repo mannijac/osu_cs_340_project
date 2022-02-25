@@ -1,4 +1,4 @@
--- MySQL dump 10.16  Distrib 10.1.37-MariaDB, for Linux (x86_64)
+-- mysql  Ver 15.1 Distrib 10.3.31-MariaDB, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: cartridgecollector
 -- ------------------------------------------------------
@@ -20,11 +20,10 @@ DROP TABLE IF EXISTS users;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE users (
-  user_id int NOT NULL UNIQUE AUTO_INCREMENT,
+  user_id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
   email varchar(30) UNIQUE NOT NULL,
   screen_name varchar(30) NOT NULL,
-  country varchar,
-  PRIMARY KEY (user_id)
+  country varchar
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 --
