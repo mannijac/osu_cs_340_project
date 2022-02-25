@@ -21,7 +21,7 @@ DROP TABLE IF EXISTS users;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE users (
   user_id int NOT NULL UNIQUE AUTO_INCREMENT,
-  email varchar UNIQUE NOT NULL,
+  email varchar(30) UNIQUE NOT NULL,
   screen_name varchar NOT NULL,
   country varchar,
   PRIMARY KEY (user_id)
