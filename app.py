@@ -1,4 +1,4 @@
-from flask import (Flask, render_template)
+from flask import (Flask, render_template, jsonify)
 import mariadb
 
 app = Flask(__name__)
@@ -15,6 +15,10 @@ cur = conn.cursor()
 @app.route("/")
 def index_page():
     return render_template("index.html")
+
+@app.route("/api", methods=['POST'])
+def handle_api_call():
+    return jsonify({'game_id': 1, 'email': 'mannijac@oregonstate.edu', 'screen_name': 'mannijac', 'country_code': '001'})
 
 
 if __name__ == "__main__":
