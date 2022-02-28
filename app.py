@@ -16,8 +16,9 @@ cur = conn.cursor()
 def index_page():
     return render_template("index.html")
 
-@app.route("/api", methods=['POST'])
+@app.route("/api", methods=['GET', 'POST', 'PUT', 'DELETE'])
 def handle_api_call():
+    # JSON response
     return jsonify({'game_id': 1, 'email': 'mannijac@oregonstate.edu', 'screen_name': 'mannijac', 'country_code': '001'})
 
 
