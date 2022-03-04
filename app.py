@@ -1,17 +1,8 @@
 from flask import (Flask, render_template, jsonify, request)
 import mariadb
-# import db_model
+import models
 
 app = Flask(__name__)
-
-conn = mariadb.connect(
-    host='127.0.0.1',
-    port=3306,
-    user='cs340',
-    password='collector',
-    database='cartridge_collector'
-)
-cur = conn.cursor()
 
 @app.route("/")
 def index_page():
@@ -20,11 +11,16 @@ def index_page():
 @app.route("/api", methods=['GET', 'POST', 'PUT', 'DELETE'])
 def handle_api_call():
     # JSON response
+    table_name = request.json['table_name']
+    table_keys = request.json['table_keys']
+    table_values = request.json['table_values']
+
     if request.method == 'GET':
         # Get requested table/filter
-        return jsonify({'game_id': 1, 'email': 'mannijac@oregonstate.edu', 'screen_name': 'mannijac', 'country_code': '001'})
+        return jsonify()
     elif request.method == 'POST':
         # Create new entry based on request body
+        models.insert(table_name, table_keys, table_values)
         return
     elif request.method == 'PUT':
         # Update existing Entry

@@ -1,5 +1,17 @@
-from flask import (Flask, request, render_template)
-from app import conn
+conn = None 
+
+def get_cursor():
+    if conn = None:
+        conn = mariadb.connect(
+            host='127.0.0.1',
+            port=3306,
+            user='cs340',
+            password='collector',
+            database='cartridge_collector'
+        )
+    cur = conn.cursor()
+    return cur
+
 
 def execute_query(db_connection = None, query = None, query_params = ()):
     '''
@@ -11,7 +23,7 @@ def execute_query(db_connection = None, query = None, query_params = ()):
     '''
 
     if db_connection is None:
-        print("No connection to the database found! Have you called connect_to_database() first?")
+        print("Connecting to database ...")
         return None
 
     if query is None or len(query.strip()) == 0:
@@ -25,6 +37,15 @@ def execute_query(db_connection = None, query = None, query_params = ()):
     return cursor
 
 #CREATE
+
+def insert(table_name, fields, values):
+    query = 'INSERT INTO ' +  table_name + ' (' + ', '.join(fields) +') VALUES (' + ', '.join(values) + ')'
+    local cur = get_cursor()
+    cur.execute(query)
+    conn.commit()
+    conn.close()
+
+
 def add_user():
     if request.method == 'GET':
         return view_users()
