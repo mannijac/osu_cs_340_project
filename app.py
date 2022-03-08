@@ -11,6 +11,7 @@ def index_page():
 @app.route("/api", methods=['GET', 'POST', 'PUT', 'DELETE'])
 def handle_api_call():
     # JSON response
+    print (request.form)
     table_name = request.form['table_name']
     table_keys = request.form['table_keys']
     table_values = request.form['table_values']
