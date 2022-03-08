@@ -11,13 +11,13 @@ def index_page():
 @app.route("/api", methods=['GET', 'POST', 'PUT', 'DELETE'])
 def handle_api_call():
     # JSON response
-    table_name = request.json['table_name']
-    table_keys = request.json['table_keys']
-    table_values = request.json['table_values']
+    table_name = request.form['table_name']
+    table_keys = request.form['table_keys']
+    table_values = request.form['table_values']
 
     if request.method == 'GET':
         # Get requested table/filter
-        return jsonify()
+        return 
     elif request.method == 'POST':
         # Create new entry based on request body
         models.insert(table_name, table_keys, table_values)
