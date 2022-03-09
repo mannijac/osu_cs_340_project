@@ -12,13 +12,18 @@ def index_page():
 @app.route("/api", methods=['GET', 'POST', 'PUT', 'DELETE'])
 def handle_api_call():
     # JSON response
-    print (request.json)
+    print(request.json)
     table_name = request.json['table_name']
     table_attributes = {}
     for att in request.json:
         if att != 'table_name':
             table_attributes[att] = '"' + request.json[att] + '"'
     
+    for att in table_attributes:
+        sql_field = '`' + att + '`'
+        table_attributes[sql_field] = table_attributes[att]
+        table_attributes.remove(att)
+
     if request.method == 'GET':
         # Get requested table/filter
         return 
