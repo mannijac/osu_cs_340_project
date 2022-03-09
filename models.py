@@ -1,3 +1,5 @@
+import mariadb
+
 def connectdb():
     '''Establish DB connection'''
     conn = mariadb.connect(
