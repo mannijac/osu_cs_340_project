@@ -18,11 +18,6 @@ def handle_api_call():
     for att in request.json:
         if att != 'table_name':
             table_attributes[att] = '"' + request.json[att] + '"'
-    
-    for att in table_attributes:
-        sql_field = '`' + att + '`'
-        table_attributes[sql_field] = table_attributes[att]
-        del table_attributes[att]
 
     if request.method == 'GET':
         # Get requested table/filter

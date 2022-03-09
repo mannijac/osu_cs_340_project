@@ -23,7 +23,7 @@ CREATE TABLE users (
   user_id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
   email varchar(30) UNIQUE NOT NULL,
   screen_name varchar(30) NOT NULL,
-  country varchar(30)
+  country_code varchar(30)
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
 --
