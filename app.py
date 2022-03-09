@@ -16,10 +16,9 @@ def handle_api_call():
     table_name = request.json['table_name']
     table_attributes = {}
     for att in request.json:
-        table_attributes[att] = request.json[att]
-    #table_keys = request.json['table_keys']
-    #table_values = request.json['table_values']
-
+        if att != 'table_name':
+            table_attributes[att] = request.json[att]
+    
     if request.method == 'GET':
         # Get requested table/filter
         return 
