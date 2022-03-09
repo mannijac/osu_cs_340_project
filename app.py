@@ -24,8 +24,7 @@ def handle_api_call():
         return 
     elif request.method == 'POST':
         # Create new entry based on request body
-        models.insert(table_name, table_attributes.keys(), table_attributes.values())
-        return
+        return jsonify(models.insert(table_name, table_attributes.keys(), table_attributes.values()))
 
     elif request.method == 'PUT':
         # Update existing Entry

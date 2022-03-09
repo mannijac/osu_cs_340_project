@@ -49,7 +49,7 @@ def insert(table_name, fields, values):
     cur.execute(query)
     conn.commit()
     conn.close()
-    return cur
+    return cur.fetchall()
 
 
 def add_user():
