@@ -1,3 +1,4 @@
+import re
 from flask import (Flask, render_template, jsonify, request)
 import mariadb
 import models
@@ -13,15 +14,18 @@ def handle_api_call():
     # JSON response
     print (request.json)
     table_name = request.json['table_name']
-    table_keys = request.json['table_keys']
-    table_values = request.json['table_values']
+    table_attributes = {}
+    for att in request.json:
+        table_attributes[att] = request.json[att]
+    #table_keys = request.json['table_keys']
+    #table_values = request.json['table_values']
 
     if request.method == 'GET':
         # Get requested table/filter
         return 
     elif request.method == 'POST':
         # Create new entry based on request body
-        models.insert(table_name, table_keys, table_values)
+        models.insert(table_name, table_attributes.keys(), table_attributes.values())
         return
     elif request.method == 'PUT':
         # Update existing Entry
