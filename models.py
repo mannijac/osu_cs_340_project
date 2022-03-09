@@ -1,3 +1,4 @@
+from tkinter.messagebox import NO
 import mariadb
 
 def connectdb():
@@ -15,6 +16,34 @@ def get_cursor(connection):
     '''Get cursor from db connection'''
     cur = connection.cursor()
     return cur
+
+
+
+def insert(table_name, fields, values):
+    query = 'INSERT INTO ' +  table_name + ' (' + ', '.join(fields) +') VALUES (' + ', '.join(values) + ')'
+    print(query)
+    conn = connectdb()
+    cur = get_cursor(conn)
+    cur.execute(query)
+    response = cur.fetchall()
+    conn.commit()
+    conn.close()
+    return response
+
+def read(table_name, filter=None):
+    '''Return table with filter appleid. Filter is a tuple of a pair, attribute and value to be matched in query'''
+    # Construct query
+    query = 'SELECT * FROM ' + table_name
+    if filter != None:
+        query += ' WHERE ' + filter[0] + '=' + filter[1]    
+    query += ';'
+    print(query)
+    conn = connectdb()
+    cur = get_cursor(conn)
+    cur.execute(query)
+    results = cur.fetchall()
+    print(results)
+    return results
 
 def execute_query(db_connection = None, query = None, query_params = ()):
     '''
@@ -40,18 +69,6 @@ def execute_query(db_connection = None, query = None, query_params = ()):
     return cursor
 
 #CREATE
-
-def insert(table_name, fields, values):
-    query = 'INSERT INTO ' +  table_name + ' (' + ', '.join(fields) +') VALUES (' + ', '.join(values) + ')'
-    print(query)
-    conn = connectdb()
-    cur = get_cursor(conn)
-    cur.execute(query)
-    response = cur.fetchall()
-    conn.commit()
-    conn.close()
-    return response
-
 
 def add_user():
     if request.method == 'GET':
@@ -111,6 +128,9 @@ def add_game_review():
 
 
 #READ
+
+def read()
+
 def view_users():
     query = 'SELECT * from users;'
     result = execute_query(conn, query)

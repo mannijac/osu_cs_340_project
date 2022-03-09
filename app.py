@@ -21,7 +21,7 @@ def handle_api_call():
 
     if request.method == 'GET':
         # Get requested table/filter
-        return 
+        return jsonify(models.read(table_name))
     elif request.method == 'POST':
         # Create new entry based on request body
         return jsonify(models.insert(table_name, table_attributes.keys(), table_attributes.values()))
