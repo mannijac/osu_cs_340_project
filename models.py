@@ -48,8 +48,9 @@ def insert(table_name, fields, values):
     cur = get_cursor(conn)
     cur.execute(query)
     conn.commit()
+    response = cur.fetchall()
     conn.close()
-    return cur.fetchall()
+    return response
 
 
 def add_user():
