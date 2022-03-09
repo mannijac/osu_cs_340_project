@@ -129,8 +129,6 @@ def add_game_review():
 
 #READ
 
-def read()
-
 def view_users():
     query = 'SELECT * from users;'
     result = execute_query(conn, query)
