@@ -27,6 +27,7 @@ def handle_api_call():
         # Create new entry based on request body
         models.insert(table_name, table_attributes.keys(), table_attributes.values())
         return
+
     elif request.method == 'PUT':
         # Update existing Entry
         return

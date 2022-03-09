@@ -1,17 +1,18 @@
-conn = None 
+def connectdb():
+    '''Establish DB connection'''
+    conn = mariadb.connect(
+        host='127.0.0.1',
+        port=3306,
+        user='cs340',
+        password='collector',
+        database='cartridge_collector'
+    )
+    return conn
 
-def get_cursor():
-    if conn == None:
-        conn = mariadb.connect(
-            host='127.0.0.1',
-            port=3306,
-            user='cs340',
-            password='collector',
-            database='cartridge_collector'
-        )
-    cur = conn.cursor()
+def get_cursor(connection):
+    '''Get cursor from db connection'''
+    cur = connection.cursor()
     return cur
-
 
 def execute_query(db_connection = None, query = None, query_params = ()):
     '''
@@ -40,10 +41,12 @@ def execute_query(db_connection = None, query = None, query_params = ()):
 
 def insert(table_name, fields, values):
     query = 'INSERT INTO ' +  table_name + ' (' + ', '.join(fields) +') VALUES (' + ', '.join(values) + ')'
-    cur = get_cursor()
+    conn = connectdb()
+    cur = get_cursor(conn)
     cur.execute(query)
     conn.commit()
     conn.close()
+    return cur
 
 
 def add_user():
