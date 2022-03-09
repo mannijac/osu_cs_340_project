@@ -43,6 +43,7 @@ def execute_query(db_connection = None, query = None, query_params = ()):
 
 def insert(table_name, fields, values):
     query = 'INSERT INTO ' +  table_name + ' (' + ', '.join(fields) +') VALUES (' + ', '.join(values) + ')'
+    print(query)
     conn = connectdb()
     cur = get_cursor(conn)
     cur.execute(query)
