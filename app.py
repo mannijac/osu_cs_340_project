@@ -22,7 +22,7 @@ def handle_api_call():
     for att in table_attributes:
         sql_field = '`' + att + '`'
         table_attributes[sql_field] = table_attributes[att]
-        table_attributes.remove(att)
+        del table_attributes[att]
 
     if request.method == 'GET':
         # Get requested table/filter
