@@ -47,8 +47,8 @@ def insert(table_name, fields, values):
     conn = connectdb()
     cur = get_cursor(conn)
     cur.execute(query)
-    conn.commit()
     response = cur.fetchall()
+    conn.commit()
     conn.close()
     return response
 
