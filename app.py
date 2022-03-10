@@ -1,7 +1,7 @@
 import re
 from flask import (Flask, render_template, jsonify, request)
 import mariadb
-import models
+import DBModel as db_model
 
 app = Flask(__name__)
 
@@ -21,10 +21,10 @@ def handle_api_call():
 
     if request.method == 'GET':
         # Get requested table/filter
-        return jsonify(models.read(table_name))
+        return jsonify(db_model.read(table_name))
     elif request.method == 'POST':
         # Create new entry based on request body
-        return jsonify(models.insert(table_name, table_attributes.keys(), table_attributes.values()))
+        return jsonify(db_model.create(table_name, table_attributes.keys(), table_attributes.values()))
 
     elif request.method == 'PUT':
         # Update existing Entry
@@ -34,4 +34,4 @@ def handle_api_call():
         return
 
 if __name__ == "__main__":
-    app.run(port='9191', host='0.0.0.0')
+    app.run(port='9111', host='0.0.0.0')
