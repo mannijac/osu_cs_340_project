@@ -4,7 +4,7 @@ class DBModelException(Exception):
     '''Exception handler'''
     pass
 
-class DBModel:
+class DBModel():
     '''Handle db interactions'''
     def __init__(self) -> None:
         self._conn = None
