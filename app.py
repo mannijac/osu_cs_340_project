@@ -1,17 +1,10 @@
+
 from flask import (Flask, render_template, jsonify, request)
 import mariadb
-# import db_model
+from DBModel import *
 
 app = Flask(__name__)
-
-conn = mariadb.connect(
-    host='127.0.0.1',
-    port=3306,
-    user='cs340',
-    password='collector',
-    database='cartridge_collector'
-)
-cur = conn.cursor()
+db_model = DBModel()
 
 @app.route("/")
 def index_page():
@@ -20,12 +13,20 @@ def index_page():
 @app.route("/api", methods=['GET', 'POST', 'PUT', 'DELETE'])
 def handle_api_call():
     # JSON response
+    print(request.json)
+    table_name = request.json['table_name']
+    table_attributes = {}
+    for att in request.json:
+        if att != 'table_name':
+            table_attributes[att] = '"' + request.json[att] + '"'
+
     if request.method == 'GET':
         # Get requested table/filter
-        return jsonify({'game_id': 1, 'email': 'mannijac@oregonstate.edu', 'screen_name': 'mannijac', 'country_code': '001'})
+        return jsonify(db_model.read(table_name))
     elif request.method == 'POST':
         # Create new entry based on request body
-        return
+        return jsonify(db_model.create(table_name, table_attributes.keys(), table_attributes.values()))
+
     elif request.method == 'PUT':
         # Update existing Entry
         return
@@ -34,4 +35,4 @@ def handle_api_call():
         return
 
 if __name__ == "__main__":
-    app.run(port='9191', host='0.0.0.0')
+    app.run(port='9111', host='0.0.0.0')
