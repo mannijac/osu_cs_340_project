@@ -34,9 +34,6 @@ class DBModel():
 
     def _verify_values(self, values):
         injections = ['SELECT', 'INSERT', 'DROP', 'DELETE']
-        if type(values) != list:
-            print('values must be a list')
-            return False
         for value in values:
             for sql in injections:
                 if sql in value.upper():
