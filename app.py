@@ -1,9 +1,10 @@
-import re
+
 from flask import (Flask, render_template, jsonify, request)
 import mariadb
-import DBModel as db_model
+import DBModel
 
 app = Flask(__name__)
+db_model = DBModel()
 
 @app.route("/")
 def index_page():
