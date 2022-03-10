@@ -49,8 +49,7 @@ class DBModel():
         connection = self._connect()
         cursor = self._get_cursor(connection)
         cursor.execute(query)
-        response = cursor.fetchone()
-        print(response)
+        print("Query executed!")
         connection.commit()
         self._close(connection)
         return response
