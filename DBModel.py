@@ -18,11 +18,11 @@ class DBModel():
     def _connect(self):
         '''Handle connections'''
         conn = mariadb.connect(
-            host=self.host,
+            host=self._host,
             port=self._port,
             user=self._user,
             password=self._pass,
-            database=self.db_name
+            database=self._db_name
         )
         print('Connected to mariadb! Database: ' + self._db_name)
         return conn
