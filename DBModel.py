@@ -50,13 +50,14 @@ class DBModel():
         cursor = self._get_cursor(connection)
         try:
             cursor.execute(query)
-            print("Query executed!")
             rows = []
             if 'SELECT' in query:
                 for row in cursor.fetchall():
                     row_data = dict(row)
                     rows.insert(row_data)
 
+            self._close(connection)
+            print("Query executed!")
             return rows
                 
             connection.commit()
