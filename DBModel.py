@@ -64,7 +64,7 @@ class DBModel():
         except:
             print("Query execution failed!")
             self._close(connection)
-            return {error: 'Query execution failed!'}
+            return {'error': 'Query execution failed!'}
             
         
         

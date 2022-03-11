@@ -13,7 +13,6 @@ def index_page():
 def handle_api_call():
     # JSON response
     print(request.json)
-    table_name = request.json['table_name']
     table_attributes = {}
     # Store and preprocess strings with quotations for SQL insertion
     # Add input sanitation code here to prevent sql injections
@@ -24,9 +23,12 @@ def handle_api_call():
     # Handle requests
     if request.method == 'GET':
         # Get requested table/filter
-        return jsonify(db_model.read(table_name))
+        if request.args.get('table_name') != None:
+             return jsonify(db_model.read(request.args.get('table_name'))
+             
     elif request.method == 'POST':
         # Create new entry based on request body
+        table_name = request.json['table_name']
         return jsonify(db_model.create(table_name, table_attributes.keys(), table_attributes.values()))
     elif request.method == 'PUT':
         # Update existing Entry
