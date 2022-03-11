@@ -48,10 +48,26 @@ class DBModel():
         '''Execute query'''
         connection = self._connect()
         cursor = self._get_cursor(connection)
-        response = cursor.execute(query)
-        print("Query executed!")
-        connection.commit()
-        self._close(connection)
+        try:
+            cursor.execute(query)
+            print("Query executed!")
+            rows = []
+            if 'SELECT' in query:
+                for row in cursor.fetchall():
+                    row_data = dict(row)
+                    rows.insert(row_data)
+
+            return rows
+                
+            connection.commit()
+            self._close(connection)
+        except:
+            print("Query execution failed!")
+            self._close(connection)
+            return {error: 'Query execution failed!'}
+            
+        
+        
         return response
 
     def _close(self, connection):
