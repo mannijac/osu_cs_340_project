@@ -51,26 +51,24 @@ class DBModel():
         rows = []
         try:
             cursor.execute(query)
-            if query.contains('SELECT'):
-                print(cursor.fetchall())
-                if cursor.fetchall() is not None:
-                    for row in cursor.fetchall():
-                        row_data = dict(row)
-                        rows.insert(row_data)
-            
-            connection.commit()
-            self._close(connection)
-            print("Query executed!")
-            return rows
+
                 
         except:
             print("Query execution failed!")
             self._close(connection)
             return {'error': 'Query execution failed!'}
             
-        
-        
-        return response
+        print("Query executed!")
+        if query.contains('SELECT'):
+                print(cursor.fetchall())
+                if cursor.fetchall() is not None:
+                    for row in cursor.fetchall():
+                        row_data = dict(row)
+                        rows.insert(row_data)
+            
+        connection.commit()
+        self._close(connection)
+        return rows    
 
     def _close(self, connection):
         '''Close database connection'''
