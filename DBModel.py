@@ -88,7 +88,8 @@ class DBModel():
             query = 'SELECT ' +  ', '.join(fields) + ' FROM ' + table_name + ' WHERE ' + filter + ';'
 
         self._print_query(query)
-        self._execute(query)
+        res = self._execute(query)
+        return res
 
     def update(self, table_name, updated_values, filter):
         '''Update table in given fields with given values.'''
