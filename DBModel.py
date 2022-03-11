@@ -48,7 +48,7 @@ class DBModel():
         '''Execute query'''
         connection = self._connect()
         cursor = self._get_cursor(connection)
-        rows
+        rows = []
         try:
             cursor.execute(query)  
         except:
