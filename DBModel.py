@@ -39,7 +39,7 @@ class DBModel():
                 if sql in value.upper():
                     return False
         return True
-    
+     
     def _print_query(self, query):
         '''Print query to console for CLI/testing purposes'''
         print('Query submitted:' + query)
@@ -48,7 +48,7 @@ class DBModel():
         '''Execute query'''
         connection = self._connect()
         cursor = self._get_cursor(connection)
-        cursor.execute(query)
+        response = cursor.execute(query)
         print("Query executed!")
         connection.commit()
         self._close(connection)
@@ -57,7 +57,7 @@ class DBModel():
     def _close(self, connection):
         '''Close database connection'''
         print ('Closing connection')
-        conn.close()
+        connection.close()
 
     # Public Methods
     def create(self, table_name, fields, values):
@@ -65,22 +65,40 @@ class DBModel():
         if self._verify_values(values) == False:
             raise DBModelException()
 
-
-        query = 'INSERT INTO ' +  table_name + ' (' + ', '.join(fields) +') VALUES (' + ', '.join(values) + ')'
+        query = 'INSERT INTO ' +  table_name + ' (' + ', '.join(fields) +') VALUES (' + ', '.join(values) + ')' + ';'
         self._print_query(query)
         self._execute(query)
         
-    def read(self, table_name, filter):
+    def read(self, table_name, fields, filter):
         '''Get from <table_name> matching filter specificiations or all entries.'''
-        pass
+        if filter is None:   # SELECT ALL   
+            query = 'SELECT ' +  ', '.join(fields) + ' FROM ' + table_name + ';'
+        else:
+            query = 'SELECT ' +  ', '.join(fields) + ' FROM ' + table_name + ' WHERE ' + filter + ';'
 
-    def update(self, table_name, fields, values):
+        self._print_query(query)
+        self._execute(query)
+
+    def update(self, table_name, updated_values, filter):
         '''Update table in given fields with given values.'''
-        pass
+        if self._verify_values(updated_values) == False:
+            raise DBModelException()
+        if filter is None: 
+            query = 'UPDATE ' + table_name + ' SET ' + updated_values
+        else:
+            query = 'UPDATE ' + table_name + ' SET ' + updated_values + ' WHERE ' + filter + ';'
+
+        self._print_query(query)
+        self._execute(query)
 
     def delete(self, table_name, filter):
-        '''Delete entries from <table_name> table matching specifications in filter.'''
-        pass
+        if filter is None:     
+            raise DBModelException()
+        else:
+            query = 'DELETE FROM ' +  table_name + ' WHERE ' + filter + ';'
+
+        self._print_query(query)
+        self._execute(query)
 
 
 
