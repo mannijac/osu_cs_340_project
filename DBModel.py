@@ -48,7 +48,7 @@ class DBModel():
         '''Execute query'''
         connection = self._connect()
         cursor = self._get_cursor(connection)
-        row = []
+        rows = []
         try:
             cursor.execute(query)
             if query.contains('SELECT'):
@@ -57,13 +57,12 @@ class DBModel():
                     for row in cursor.fetchall():
                         row_data = dict(row)
                         rows.insert(row_data)
-
+            
+            connection.commit()
             self._close(connection)
             print("Query executed!")
             return rows
                 
-            connection.commit()
-            self._close(connection)
         except:
             print("Query execution failed!")
             self._close(connection)
