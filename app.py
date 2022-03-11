@@ -33,9 +33,10 @@ def handle_api_call():
         return jsonify(db_model.create(table_name, table_attributes.keys(), table_attributes.values()))
     elif request.method == 'PUT':
         # Update existing Entry
-        return
+        return jsonify(db_model.update(table_name, table_attributes.keys(), table_attributes.values()))
     elif request.method == 'DELETE':
         # Delete entry
+        return jsonify(db_model.delete(table_name, primary_key, value))
         return
 
 if __name__ == "__main__":
