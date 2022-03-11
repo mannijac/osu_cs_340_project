@@ -58,8 +58,8 @@ class DBModel():
             
         print("Query executed!")
         if query.__contains__('SELECT'):
-                print(cursor.fetchall())
-                rows = cursor.fetchall()
+            rows = cursor.fetchall()
+            print(rows)
             
         connection.commit()
         self._close(connection)
