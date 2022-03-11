@@ -37,7 +37,6 @@ def handle_api_call():
     elif request.method == 'DELETE':
         # Delete entry
         return jsonify(db_model.delete(table_name, primary_key, value))
-        return
 
 if __name__ == "__main__":
     app.run(port='9111', host='0.0.0.0')
