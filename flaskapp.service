@@ -1,0 +1,13 @@
+[Unit]
+Description=Flask App
+After=network.target
+
+[Service]
+User=cs340
+WorkingDirectory=/home/cs340/osu_cs_340_project/
+ExecStart=python3 app.py
+Restart=always
+RestartSec=3s
+
+[Install]
+WantedBy=multi-user.target
