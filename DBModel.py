@@ -52,7 +52,7 @@ class DBModel():
             cursor.execute(query)
             rows = []
             if query.contains('SELECT'):
-                print cursor.fetchall()
+                print(cursor.fetchall())
                 for row in cursor.fetchall():
                     row_data = dict(row)
                     rows.insert(row_data)
