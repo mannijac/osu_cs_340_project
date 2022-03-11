@@ -48,14 +48,15 @@ class DBModel():
         '''Execute query'''
         connection = self._connect()
         cursor = self._get_cursor(connection)
+        row = []
         try:
             cursor.execute(query)
-            rows = []
             if query.contains('SELECT'):
                 print(cursor.fetchall())
-                for row in cursor.fetchall():
-                    row_data = dict(row)
-                    rows.insert(row_data)
+                if cursor.fetchall() is not None:
+                    for row in cursor.fetchall():
+                        row_data = dict(row)
+                        rows.insert(row_data)
 
             self._close(connection)
             print("Query executed!")
