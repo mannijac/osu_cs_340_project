@@ -1,3 +1,4 @@
+import re
 from flask import (Flask, render_template, jsonify, request)
 import mariadb
 from DBModel import *
@@ -16,14 +17,15 @@ def handle_api_call():
     table_attributes = {}
     # Store and preprocess strings with quotations for SQL insertion
     # Add input sanitation code here to prevent sql injections
-    for att in request.json:
-        if att != 'table_name':
-            table_attributes[att] = '"' + request.json[att] + '"'
-    
+    if request.json is not None:
+        for att in request.json:
+            if att != 'table_name':
+                table_attributes[att] = '"' + request.json[att] + '"'
+        
     # Handle requests
     if request.method == 'GET':
         # Get requested table/filter
-        if request.args.get('table_name') != None:
+        if request.args.get('table_name') is not None:
              return jsonify(db_model.read(request.args.get('table_name')))
     elif request.method == 'POST':
         # Create new entry based on request body
