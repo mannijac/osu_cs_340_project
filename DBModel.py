@@ -57,7 +57,7 @@ class DBModel():
             return {'error': 'Query execution failed!'}
             
         print("Query executed!")
-        if query.contains('SELECT'):
+        if query.__contains__('SELECT'):
                 print(cursor.fetchall())
                 rows = cursor.fetchall()
             
