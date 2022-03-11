@@ -78,7 +78,10 @@ class DBModel():
 
         query = 'INSERT INTO ' +  table_name + ' (' + ', '.join(fields) +') VALUES (' + ', '.join(values) + ')' + ';'
         self._print_query(query)
-        self._execute(query)
+        res = self._execute(query)
+        if len(res) == 0:
+            return {'error':'no rows added'}
+        return {'success':'{} rows have been inserted'.format(str(len(res)))}
         
     def read(self, table_name, fields=None, filter=None):
         '''Get from <table_name> matching filter specificiations or all entries.'''
@@ -89,7 +92,9 @@ class DBModel():
 
         self._print_query(query)
         res = self._execute(query)
-        return res
+        if len(res) == 0:
+            return {'error':'no rows read'}
+        return {'success':'{} rows have been read'.format(str(len(res)))}
 
     def update(self, table_name, updated_values, filter):
         '''Update table in given fields with given values.'''
@@ -101,7 +106,10 @@ class DBModel():
             query = 'UPDATE ' + table_name + ' SET ' + updated_values + ' WHERE ' + filter + ';'
 
         self._print_query(query)
-        self._execute(query)
+        res = self._execute(query)
+        if len(res) == 0:
+            return {'error':'no rows updated'}
+        return {'success':'{} rows have been updated'.format(str(len(res)))}
 
     def delete(self, table_name, filter):
         if filter is None:     
@@ -110,7 +118,10 @@ class DBModel():
             query = 'DELETE FROM ' +  table_name + ' WHERE ' + filter + ';'
 
         self._print_query(query)
-        self._execute(query)
+        res = self._execute(query)
+        if len(res) == 0:
+            return {'error':'no rows deleted'}
+        return {'success':'{} rows have been deleted'.format(str(len(res)))}
 
 
 
