@@ -94,7 +94,7 @@ class DBModel():
         res = self._execute(query)
         if len(res) == 0:
             return {'error':'no rows read'}
-        return {'success':'{} rows have been read'.format(str(len(res)))}
+        return res
 
     def update(self, table_name, updated_values, filter):
         '''Update table in given fields with given values.'''
