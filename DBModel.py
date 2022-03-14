@@ -109,7 +109,7 @@ class DBModel():
             return {'error':'no rows updated'}
         return {'success':'{} rows have been updated'.format(str(len(res)))}
 
-    def delete(self, table_name->str, filter->str):
+    def delete(self, table_name, filter):
         if filter is None:     
             raise DBModelException()
         else:
