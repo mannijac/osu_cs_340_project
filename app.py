@@ -37,10 +37,14 @@ def handle_api_call():
         return jsonify(db_model.update(table_name, table_attributes.keys(), table_attributes.values()))
     elif request.method == 'DELETE':
         # Delete entry
+        if request.args.get('table_name') is None:
+            return jsonify({'error': 'table_name is none!' }) 
+
         table_name = request.args.get('table_name')
         
         filter = {}
         print(table_name)
+
         print(table_data[table_name])
         filter_keys = table_data[table_name]['primary_key']
         filter_values = [request.args.get('id')]
