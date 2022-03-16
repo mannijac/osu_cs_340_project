@@ -4,8 +4,6 @@ import mariadb
 from DBModel import *
 from TableData import table_data as table_data
 
-print('Table data loaded:\n' + table_data)
-
 app = Flask(__name__)
 db_model = DBModel()
 
@@ -42,6 +40,7 @@ def handle_api_call():
         table_name = request.args.get('table_name')
         
         filter = {}
+        print(table_name)
         print(table_data[table_name])
         filter_keys = table_data[table_name]['primary_key']
         filter_values = [request.args.get('id')]
