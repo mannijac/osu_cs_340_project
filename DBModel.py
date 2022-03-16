@@ -113,7 +113,7 @@ class DBModel():
         if len(filter.keys()) != 1:     
             raise DBModelException()
 
-        filter_string = filter.keys()[0] + '=' + filter.keys
+        filter_string = list(filter.keys())[0] + '=' + filter.keys
         query = 'DELETE FROM ' +  table_name + ' WHERE ' + filter + ';'
         self._print_query(query)
         res = self._execute(query)
