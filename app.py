@@ -38,7 +38,9 @@ def handle_api_call():
     elif request.method == 'DELETE':
         # Delete entry
         table_name = request.args.get('table_name')
+        
         filter = {}
+        print(table_data[table_name])
         filter_keys = table_data[table_name]['primary_key']
         filter_values = [request.args.get('id')]
                 
