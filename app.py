@@ -39,10 +39,10 @@ def handle_api_call():
         # Delete entry
         filter = {}
         filter_keys = table_data[table_name][primary_key]
-        filter values = request.args.get('id')
+        filter_values = [request.args.get('id')]
                 
         for n in range(0, len(filter_keys)):
-            filter[filter_keys[n] = values[n]]
+            filter[filter_keys[n]] = filter_values[n]
         
         return jsonify(db_model.delete(request.args.get('table_name'), filter))
 
