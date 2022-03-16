@@ -2,7 +2,7 @@ import re
 from flask import (Flask, render_template, jsonify, request)
 import mariadb
 from DBModel import *
-from TableData import table_data
+from TableData import table_data as table_data
 
 app = Flask(__name__)
 db_model = DBModel()
