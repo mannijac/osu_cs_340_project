@@ -118,10 +118,12 @@ class DBModel():
         filter_string = key + '=' + value
         query = 'DELETE FROM ' +  table_name + ' WHERE ' + filter_string + ';'
         self._print_query(query)
-        res = self._execute(query)
-        if len(res) == 0:
+        try: 
+            self._execute(query)
+        except:
             return {'error':'no rows deleted'}
-        return {'success':'{} rows have been deleted'.format(str(len(res)))}
+        
+        return({'success': 'Row deleted!'})
 
 
 
