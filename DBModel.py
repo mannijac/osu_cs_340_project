@@ -110,11 +110,11 @@ class DBModel():
         return {'success':'{} rows have been updated'.format(str(len(res)))}
 
     def delete(self, table_name, filter):
-        if filter is None:     
+        if len(filter.keys()) != 1:     
             raise DBModelException()
-        else:
-            query = 'DELETE FROM ' +  table_name + ' WHERE ' + filter + ';'
 
+        filter_string = filter.keys()[0] + '=' + filter.keys
+        query = 'DELETE FROM ' +  table_name + ' WHERE ' + filter + ';'
         self._print_query(query)
         res = self._execute(query)
         if len(res) == 0:
