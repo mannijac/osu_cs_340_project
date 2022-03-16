@@ -47,7 +47,7 @@ def handle_api_call():
 
         print(table_data[table_name])
         filter_keys = table_data[table_name]['primary_key']
-        filter_values = [request.args.get('id')]
+        filter_values = [request.json['id']]
                 
         for n in range(0, len(filter_keys)):
             filter[filter_keys[n]] = filter_values[n]
