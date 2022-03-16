@@ -21,7 +21,7 @@ def handle_api_call():
     if request.json is not None:
         for att in request.json:
             if att != 'table_name':
-                table_attributes[att] = '"' + request.json[att] + '"'
+                table_attributes[att] = '"' + str(request.json[att]) + '"'
         
     # Handle requests
     if request.method == 'GET':
