@@ -4,6 +4,8 @@ import mariadb
 from DBModel import *
 from TableData import table_data as table_data
 
+print('Table data loaded:\n' + table_data)
+
 app = Flask(__name__)
 db_model = DBModel()
 
