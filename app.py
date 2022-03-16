@@ -39,7 +39,7 @@ def handle_api_call():
         # Delete entry
         table_name = request.args.get('table_name')
         filter = {}
-        filter_keys = table_data[table_name][primary_key]
+        filter_keys = table_data[table_name]['primary_key']
         filter_values = [request.args.get('id')]
                 
         for n in range(0, len(filter_keys)):
