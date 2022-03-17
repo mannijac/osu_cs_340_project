@@ -63,9 +63,9 @@ DROP TABLE IF EXISTS wishes;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE wishes (
+  wish_id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
   user_id int NOT NULL,
   game_id int NOT NULL,
-  PRIMARY KEY (user_id, game_id),
   CONSTRAINT fk_wishes_user
     FOREIGN KEY (user_id) REFERENCES users(user_id)
     ON DELETE CASCADE
@@ -92,11 +92,11 @@ DROP TABLE IF EXISTS ratings;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE ratings (
+  rating_id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
   user_id int NOT NULL,
   game_id int NOT NULL,
   rating_value int NOT NULL, 
   rating_comment varchar(30),
-  PRIMARY KEY (user_id, game_id),
   CONSTRAINT fk_ratings_user
     FOREIGN KEY (user_id) REFERENCES users(user_id)
     ON DELETE CASCADE
@@ -123,9 +123,9 @@ DROP TABLE IF EXISTS collections;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE collections (
+  collection_id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
   user_id int NOT NULL,
   game_id int NOT NULL,
-  PRIMARY KEY (user_id, game_id),
   CONSTRAINT fk_collections_user
     FOREIGN KEY (user_id) REFERENCES users(user_id)
     ON DELETE CASCADE
