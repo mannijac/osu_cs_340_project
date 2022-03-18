@@ -102,7 +102,7 @@ class DBModel():
             raise DBModelException()
         else:
             updated_values = ""
-            for field in updated_fields:
+            for field in list(updated_fields):
                 updated_values = updated_values + field
                 if field != updated_fields[-1]:
                     updated_values += ", "
