@@ -108,7 +108,7 @@ class DBModel():
         res = self._execute(query)
         if res.key() == "error":
             return res
-        return {'success':'row hasbeen updated'}
+        return {'success':'row has been updated'}
 
     def delete(self, table_name, filter):
         if len(filter.keys()) != 1:    
