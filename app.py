@@ -56,4 +56,11 @@ def handle_api_call():
 
 
 if __name__ == "__main__":
-    app.run(port='9111', host='0.0.0.0')
+    port = '9111'
+    host='0.0.0.0'
+    try:
+        app.run(port=port, host=host)
+    except:
+        print('Port unavailable trying next port')
+        port = str(number(port) + 1)
+        app.run(port=port), host=host)
