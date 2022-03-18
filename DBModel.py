@@ -108,7 +108,9 @@ class DBModel():
                 updated_values = updated_values + field
                 if i != len(updated_fields):
                     updated_values += ", "
-            query = 'UPDATE ' + str(table_name) + ' SET ' + updated_values + ' WHERE ' + str(updated_fields[0]) + "=" + str(filter[0]) + ';'
+                if i == 1:
+                    pk = field
+            query = 'UPDATE ' + str(table_name) + ' SET ' + updated_values + ' WHERE ' + pk + "=" + str(filter[0]) + ';'
 
         self._print_query(query)
         res = self._execute(query)
