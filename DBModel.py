@@ -102,9 +102,11 @@ class DBModel():
             raise DBModelException()
         else:
             updated_values = ""
+            i=0
             for field in list(updated_fields):
+                i+=1
                 updated_values = updated_values + field
-                if field != updated_fields[-1]:
+                if i != len(updated_fields):
                     updated_values += ", "
             query = 'UPDATE ' + str(table_name) + ' SET ' + updated_values + ' WHERE ' + str(updated_fields[0]) + "=" + str(filter[0]) + ';'
 
