@@ -103,9 +103,10 @@ class DBModel():
         else:
             updated_values = ""
             i=0
+
             for field in list(updated_fields):
                 i+=1
-                updated_values = updated_values + field
+                updated_values = updated_values + field + "=" + list(filter)[i-1]
                 if i != len(updated_fields):
                     updated_values += ", "
                 if i == 1:
