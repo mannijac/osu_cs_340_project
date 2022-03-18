@@ -101,6 +101,7 @@ class DBModel():
         if self._verify_values(updated_fields) == False:
             raise DBModelException()
         else:
+            updated_values = ""
             for field in updated_fields:
                 updated_values = updated_values + field
                 if field != updated_fields[-1]:
