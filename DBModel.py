@@ -95,12 +95,16 @@ class DBModel():
         res = self._execute(query)
         return res
 
-    def update(self, table_name, updated_values, filter):
+    def update(self, table_name, updated_fields, filter):
         '''Update table in given fields with given values.'''
         if self._verify_values(updated_values) == False:
             raise DBModelException()
         else:
-            query = 'UPDATE ' + str(table_name) + ' SET ' + updated_values + ' WHERE ' + str(filter) + ';'
+            for field in updated_fields:
+                updated_values = updated_values + field
+                if field != updated_fields[-1]:
+                    updated_values += ", "
+            query = 'UPDATE ' + str(table_name) + ' SET ' + updated_values + ' WHERE ' + str(updated_fields[0]) + "=" + str(filter[0]) + ';'
 
         self._print_query(query)
         res = self._execute(query)
