@@ -100,7 +100,7 @@ class DBModel():
         if self._verify_values(updated_values) == False:
             raise DBModelException()
         else:
-            query = 'UPDATE ' + str(table_name) + ' SET ' + str(updated_values) + ' WHERE ' + str(filter) + ';'
+            query = 'UPDATE ' + str(table_name) + ' SET ' + updated_values + ' WHERE ' + str(filter) + ';'
 
         self._print_query(query)
         res = self._execute(query)
