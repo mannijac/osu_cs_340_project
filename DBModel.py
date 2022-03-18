@@ -79,9 +79,10 @@ class DBModel():
         query = 'INSERT INTO ' +  table_name + ' (' + ', '.join(fields) +') VALUES (' + ', '.join(values) + ')' + ';'
         self._print_query(query)
         res = self._execute(query)
-        if len(res) == 0:
-            return {'error':'no rows added'}
-        return {'success':'{} rows have been inserted'.format(str(len(res)))}
+        if res.key() == "error":
+            return res
+        else:
+            return {'success':' rows have been inserted'}
         
     def read(self, table_name, fields=None, filter=None):
         '''Get from <table_name> matching filter specificiations or all entries.'''
@@ -99,18 +100,18 @@ class DBModel():
         if self._verify_values(updated_values) == False:
             raise DBModelException()
         if filter is None: 
-            query = 'UPDATE ' + table_name + ' SET ' + updated_values
+            query = 'UPDATE ' + table_name + ' SET ' + updated_values + ';'
         else:
             query = 'UPDATE ' + table_name + ' SET ' + updated_values + ' WHERE ' + filter + ';'
 
         self._print_query(query)
         res = self._execute(query)
-        if len(res) == 0:
-            return {'error':'no rows updated'}
-        return {'success':'{} rows have been updated'.format(str(len(res)))}
+        if res.key() == "error":
+            return res
+        return {'success':'row hasbeen updated'}
 
     def delete(self, table_name, filter):
-        if len(filter.keys()) != 1:     
+        if len(filter.keys()) != 1:    
             raise DBModelException()
 
         print(filter)    
@@ -118,12 +119,11 @@ class DBModel():
         filter_string = key + '=' + value
         query = 'DELETE FROM ' +  table_name + ' WHERE ' + filter_string + ';'
         self._print_query(query)
-        try: 
-            self._execute(query)
-        except:
-            return {'error':'no rows deleted'}
-        
-        return({'success': 'Row deleted!'})
+        res = self._execute(query)
+        if res.key() == "error":
+            return res
+        else:
+            return {'success': 'Row deleted!'}
 
 
 
