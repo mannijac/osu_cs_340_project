@@ -85,7 +85,7 @@ class DBModel():
         else:
             return {'success':' rows have been inserted'}
         
-    def read(self, table_name, fields=None, filter=None):
+    def read(self, table_name, filter=None):
         '''Get from <table_name> matching filter specificiations or all entries.'''
         if filter is None:   # SELECT ALL   
             query = 'SELECT * FROM ' + table_name + ';'
