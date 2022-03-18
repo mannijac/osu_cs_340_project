@@ -24,22 +24,23 @@ def handle_api_call():
                 table_attributes[att] = '"' + str(request.json[att]) + '"'
         
     # Handle requests
-    table_name = request.json['table_name']
     if request.method == 'GET':
         # Get requested table/filter
         if request.args.get('table_name') is not None:
              return jsonify(db_model.read(request.args.get('table_name')))
     elif request.method == 'POST':
         # Create new entry based on request body
+        table_name = request.json['table_name']
         return jsonify(db_model.create(table_name, table_attributes.keys(), table_attributes.values()))
     elif request.method == 'PUT':
         # Update existing Entry
+        table_name = request.json['table_name']
         return jsonify(db_model.update(table_name, table_attributes.keys(), table_attributes.values()))
     elif request.method == 'DELETE':
         # Delete entry
         if request.json.get('table_name') is None:
             return jsonify({'error': 'table_name is none!' }) 
-
+        table_name = request.json['table_name']
     
         
         filter = {}
