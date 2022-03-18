@@ -79,7 +79,7 @@ class DBModel():
         query = 'INSERT INTO ' +  table_name + ' (' + ', '.join(fields) +') VALUES (' + ', '.join(values) + ')' + ';'
         self._print_query(query)
         res = self._execute(query)
-        if res.key() == "error":
+        if "error" in res:
             return res
         else:
             return {'success':' rows have been inserted'}
@@ -104,7 +104,7 @@ class DBModel():
 
         self._print_query(query)
         res = self._execute(query)
-        if res.key() == "error":
+        if "error" in res:
             return res
         return {'success':'row has been updated'}
 
@@ -118,7 +118,7 @@ class DBModel():
         query = 'DELETE FROM ' +  table_name + ' WHERE ' + filter_string + ';'
         self._print_query(query)
         res = self._execute(query)
-        if res.key() == "error":
+        if "error" in res:
             return res
         else:
             return {'success': 'Row deleted!'}
