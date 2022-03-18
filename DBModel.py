@@ -110,7 +110,10 @@ class DBModel():
                     updated_values += ", "
                 if i == 1:
                     pk = field
-            query = 'UPDATE ' + str(table_name) + ' SET ' + updated_values + ' WHERE ' + pk + "=" + str(filter[0]) + ';'
+                    for filt in filter:
+                        filt = filt
+                        break
+            query = 'UPDATE ' + str(table_name) + ' SET ' + updated_values + ' WHERE ' + pk + "=" + filt + ';'
 
         self._print_query(query)
         res = self._execute(query)
