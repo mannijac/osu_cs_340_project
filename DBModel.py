@@ -99,8 +99,6 @@ class DBModel():
         '''Update table in given fields with given values.'''
         if self._verify_values(updated_values) == False:
             raise DBModelException()
-        if filter is None: 
-            query = 'UPDATE ' + table_name + ' SET ' + updated_values + ';'
         else:
             query = 'UPDATE ' + table_name + ' SET ' + updated_values + ' WHERE ' + filter + ';'
 
