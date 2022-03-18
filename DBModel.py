@@ -111,9 +111,7 @@ class DBModel():
                     updated_values += ", "
                 if i == 1:
                     pk = field
-                    for filt in filter:
-                        filt = filt
-                        break
+                    filt = list(filter)[0]
             query = 'UPDATE ' + str(table_name) + ' SET ' + updated_values + ' WHERE ' + pk + "=" + filt + ';'
 
         self._print_query(query)
