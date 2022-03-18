@@ -90,7 +90,7 @@ class DBModel():
         if filter is None:   # SELECT ALL   
             query = 'SELECT * FROM ' + table_name + ';'
         else:
-            query = 'SELECT ' +  ', '.join(fields) + ' FROM ' + table_name + ' WHERE ' + filter + ';'
+            query = 'SELECT * FROM ' + table_name + ' WHERE ' + filter + ';'
 
         self._print_query(query)
         res = self._execute(query)
