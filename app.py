@@ -28,7 +28,7 @@ def handle_api_call():
         # Get requested table/filter
         if request.args.get('table_name') is not None:
             try:
-                filt = str(request.args.get('filter'))
+                filt = request.args.get('filter')
             except:
                 filt = None
             return jsonify(db_model.read(request.args.get('table_name'), filter=filt))

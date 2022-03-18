@@ -88,7 +88,7 @@ class DBModel():
     def read(self, table_name, filter=None):
         '''Get from <table_name> matching filter specificiations or all entries.'''
         if filter is not None:   # SELECT ALL   
-            query = 'SELECT * FROM ' + table_name + ' WHERE "' + filter + '";'
+            query = 'SELECT * FROM ' + table_name + ' WHERE ' + filter + ';'
         else:
             query = 'SELECT * FROM ' + table_name + ';'
 
