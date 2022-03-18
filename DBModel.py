@@ -1,3 +1,4 @@
+from dataclasses import fields
 import mariadb
 
 class DBModelException(Exception):
@@ -97,7 +98,7 @@ class DBModel():
 
     def update(self, table_name, updated_fields, filter):
         '''Update table in given fields with given values.'''
-        if self._verify_values(updated_values) == False:
+        if self._verify_values(updated_fields) == False:
             raise DBModelException()
         else:
             for field in updated_fields:
