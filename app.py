@@ -63,4 +63,4 @@ if __name__ == "__main__":
     except:
         print('Port unavailable trying next port')
         port = str(number(port) + 1)
-        app.run(port=port), host=host)
+        app.run(port=port, host=host)
