@@ -28,10 +28,10 @@ def handle_api_call():
         # Get requested table/filter
         if request.args.get('table_name') is not None:
             try:
-                filter = request.args.get('filter')
+                filt = request.args.get('filter')
             except:
-                filter = None
-            return jsonify(db_model.read(request.args.get('table_name'), filter=filter))
+                filt = None
+            return jsonify(db_model.read(request.args.get('table_name'), filter=filt))
         
     elif request.method == 'POST':
         # Create new entry based on request body
